@@ -27,7 +27,7 @@ require "active_support/time"
 
 def interpret(spec)
   response = HTTParty.get spec["url"]
-  relevant = response.
+  relevant = response.select { |elt| Time.parse(elt.send( spec[:time_selector])).today? }
 end
 
 def eval_selector(obj, arr)
